@@ -32,7 +32,7 @@
 
 STATIC CONST UBYTE USED verstag[] = VERSTAG;
 
-struct WavPackBase
+struct WavpackBase
 {
 	struct Library libNode;
 	BPTR segList;
@@ -85,7 +85,7 @@ STATIC BPTR libClose(struct LibraryManagerInterface *Self)
 /* Expunge the library */
 STATIC BPTR libExpunge(struct LibraryManagerInterface *Self)
 {
-	struct WavPackBase *libBase = (struct WavPackBase *)Self->Data.LibBase;
+	struct WavpackBase *libBase = (struct WavpackBase *)Self->Data.LibBase;
 	BPTR result;
 	if (libBase->libNode.lib_OpenCnt == 0)
 	{
@@ -107,7 +107,7 @@ STATIC BPTR libExpunge(struct LibraryManagerInterface *Self)
 }
 
 /* The ROMTAG Init Function */
-STATIC struct WavPackBase *libInit(struct WavPackBase *libBase, BPTR seglist, struct ExecIFace *exec)
+STATIC struct WavpackBase *libInit(struct WavpackBase *libBase, BPTR seglist, struct ExecIFace *exec)
 {
 	libBase->libNode.lib_Node.ln_Type = NT_LIBRARY;
 	libBase->libNode.lib_Node.ln_Pri  = 0;
@@ -217,7 +217,7 @@ STATIC CONST CONST_APTR libInterfaces[] =
 
 STATIC CONST struct TagItem libCreateTags[] =
 {
-	{ CLT_DataSize,   sizeof(struct WavPackBase) },
+	{ CLT_DataSize,   sizeof(struct WavpackBase) },
 	{ CLT_InitFunc,   (Tag)libInit               },
 	{ CLT_Interfaces, (Tag)libInterfaces         },
 	/* Uncomment the following line if you have a 68k jump table */

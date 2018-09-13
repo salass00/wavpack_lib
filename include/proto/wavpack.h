@@ -36,9 +36,9 @@
 
 #ifndef __NOLIBBASE__
  #if defined(__cplusplus) && defined(__USE_AMIGAOS_NAMESPACE__)
-  extern struct AmigaOS::Library *WavPackBase;
+  extern struct AmigaOS::Library *WavpackBase;
  #else
-  extern struct Library *WavPackBase;
+  extern struct Library *WavpackBase;
  #endif
 #endif /* __NOLIBBASE__ */
 
@@ -54,9 +54,9 @@
  #endif /* CLIB_WAVPACK_PROTOS_H */
  #ifndef __NOGLOBALIFACE__
   #if defined(__cplusplus) && defined(__USE_AMIGAOS_NAMESPACE__)
-   extern struct AmigaOS::WavPackIFace *IWavPack;
+   extern struct AmigaOS::WavpackIFace *IWavpack;
   #else
-   extern struct WavPackIFace *IWavPack;
+   extern struct WavpackIFace *IWavpack;
   #endif
  #endif /* __NOGLOBALIFACE__ */
 #else /* __amigaos4__ */

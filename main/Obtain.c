@@ -28,7 +28,7 @@
 #include "../wavpack_vectors.h"
 #include <interfaces/wavpack.h>
 
-uint32 _WavPack_Obtain(struct WavPackIFace *Self) {
+uint32 _Wavpack_Obtain(struct WavpackIFace *Self) {
 	return ++Self->Data.RefCount;
 }
 

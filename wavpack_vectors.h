@@ -39,8 +39,8 @@
 #endif
 
 /* forward declaration */
-struct WavPackIFace;
+struct WavpackIFace;
 
-uint32 _WavPack_Obtain(struct WavPackIFace *);
-uint32 _WavPack_Release(struct WavPackIFace *);
+uint32 _Wavpack_Obtain(struct WavpackIFace *);
+uint32 _Wavpack_Release(struct WavpackIFace *);
 

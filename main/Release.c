@@ -28,7 +28,7 @@
 #include "../wavpack_vectors.h"
 #include <interfaces/wavpack.h>
 
-uint32 _WavPack_Release(struct WavPackIFace *Self) {
+uint32 _Wavpack_Release(struct WavpackIFace *Self) {
 	return --Self->Data.RefCount;
 }
 

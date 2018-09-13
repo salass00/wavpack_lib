@@ -27,17 +27,17 @@
 
 #include "wavpack_vectors.h"
 
-STATIC uint32 VARARGS68K _WavPack_UNIMPLEMENTED(UNUSED struct WavPackIFace *iface UNUSED)
+STATIC uint32 VARARGS68K _Wavpack_UNIMPLEMENTED(UNUSED struct WavpackIFace *iface UNUSED)
 {
 	return 0;
 }
 
 STATIC CONST APTR main_v1_vectors[] =
 {
-	_WavPack_Obtain,
-	_WavPack_Release,
-	_WavPack_UNIMPLEMENTED, /* Expunge */
-	_WavPack_UNIMPLEMENTED, /* Clone */
+	_Wavpack_Obtain,
+	_Wavpack_Release,
+	_Wavpack_UNIMPLEMENTED, /* Expunge */
+	_Wavpack_UNIMPLEMENTED, /* Clone */
 	WavpackOpenFileInputEx64,
 	WavpackOpenFileInputEx,
 	WavpackOpenFileInput,
