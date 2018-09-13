@@ -559,6 +559,35 @@ void finish_line (void)
 
     fflush (stderr);
 }
+#elif defined(__amigaos4__)
+// No sigaction on AmigaOS
+
+void finish_line (void)
+{
+    fprintf (stderr, "                                \n");
+    fflush (stderr);
+}
+
+#include <signal.h>
+
+static int break_flag;
+
+static void int_handler(int s)
+{
+    break_flag = 1;
+    signal(s, &int_handler);
+}
+
+void setup_break(void)
+{
+    break_flag = 0;
+    signal(SIGINT, &int_handler);
+}
+
+int check_break (void)
+{
+    return break_flag;
+}
 #else
 //////////////////////////////////////////////////////////////////////////////
 // Function to clear the stderr console to the end of the current line (and //
