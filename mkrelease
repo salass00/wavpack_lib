@@ -1,0 +1,52 @@
+; Script for generating a release archive
+
+make all
+
+set wavpackdir wavpack-5.1.0
+set destdir RAM:mkrelease
+set fullvers `version file wavpack.library`
+set numvers `cut "$fullvers" word 2`
+
+delete all force ${destdir}
+makedir all force ${destdir}/wavpack_lib/Libs
+makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/proto
+makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/interfaces
+makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/inline4
+makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/libraries
+
+copy clone Install ${destdir}/wavpack_lib
+copy clone LICENSE ${destdir}/wavpack_lib
+copy clone ${wavpackdir}/COPYING ${destdir}/wavpack_lib/COPYING-wavpack
+copy clone releasenotes ${destdir}/wavpack_lib
+copy clone wavpack.library ${destdir}/wavpack_lib/Libs
+copy clone include/proto/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/proto
+copy clone include/interfaces/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/interfaces
+copy clone include/inline4/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/inline4
+copy clone include/libraries/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/libraries
+copy clone ${wavpackdir}/include/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include
+
+echo "Short:        WavPack as an AmigaOS shared library"  > ${destdir}/wavpack_lib/wavpack_lib.readme
+echo "Author:       Fredrik Wikstrom"                     >> ${destdir}/wavpack_lib/wavpack_lib.readme
+echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>"  >> ${destdir}/wavpack_lib/wavpack_lib.readme
+echo "Type:         util/libs"                            >> ${destdir}/wavpack_lib/wavpack_lib.readme
+echo "Version:      $numvers"                             >> ${destdir}/wavpack_lib/wavpack_lib.readme
+echo "Architecture: ppc-amigaos"                          >> ${destdir}/wavpack_lib/wavpack_lib.readme
+echo ""                                                   >> ${destdir}/wavpack_lib/wavpack_lib.readme
+type README                                               >> ${destdir}/wavpack_lib/wavpack_lib.readme
+
+copy clone ENV:Sys/def_drawer.info ${destdir}/wavpack_lib.info
+copy clone ENV:Sys/def_install.info ${destdir}/wavpack_lib/Install.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/wavpack_lib/wavpack_lib.readme.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/wavpack_lib/LICENSE.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/wavpack_lib/COPYING-wavpack.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/wavpack_lib/releasenotes.info
+
+changetooltype ${destdir}/wavpack_lib/Install.info ADD "APPNAME=wavpack.library"
+
+delete force RAM:wavpack_lib.lha
+lha a -x -r RAM:wavpack_lib.lha ${destdir}/
+
+echo "RAM:wavpack_lib.lha created"
+
+copy clone ${destdir}/wavpack_lib/wavpack_lib.readme RAM:
+
