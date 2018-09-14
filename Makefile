@@ -33,11 +33,11 @@ main_OBJS = $(main_SRCS:.c=.o)
 
 OBJS = init.o $(main_OBJS)
 
-STATIC_SRCS = $(wildcard static/*.c)
+STATIC_SRCS = static/autoinit.c static/stubs.c
 STATIC_OBJS = $(STATIC_SRCS:.c=.o)
 
 .PHONY: all
-all: $(TARGET)
+all: $(TARGET) libwavpack.a
 
 init.o: $(TARGET)_rev.h wavpack_vectors.c wavpack_vectors.h
 
@@ -56,9 +56,14 @@ $(TARGET): build-wavpack $(OBJS)
 	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $(OBJS) wavpack-build/src/.libs/libwavpack.a $(LIBS)
 	$(STRIP) -R.comment -o $@ $@.debug
 
+libwavpack.a: $(STATIC_OBJS)
+	$(AR) -crv $@ $^
+	$(RANLIB) $@
+
 .PHONY: clean
 clean:
-	rm -f *.o main/*.o
+	rm -f $(TARGET) $(TARGET).debug *.o main/*.o
+	rm -f libwavpack.a static/*.o
 	rm -rf wavpack-build
 
 .PHONY: revision
