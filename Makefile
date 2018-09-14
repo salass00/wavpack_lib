@@ -37,7 +37,7 @@ STATIC_SRCS = static/autoinit.c static/stubs.c
 STATIC_OBJS = $(STATIC_SRCS:.c=.o)
 
 .PHONY: all
-all: $(TARGET) libwavpack.a
+all: $(TARGET) libwavpack.a compile-cli-tools
 
 init.o: $(TARGET)_rev.h wavpack_vectors.c wavpack_vectors.h
 
@@ -61,7 +61,7 @@ libwavpack.a: $(STATIC_OBJS)
 	$(RANLIB) $@
 
 .PHONY: compile-cli-tools
-compile-cli-tools:
+compile-cli-tools: libwavpack.a
 	$(MAKE) -C cli WAVPACKDIR=$(WAVPACKDIR)
 
 .PHONY: clean
