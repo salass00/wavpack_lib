@@ -60,8 +60,13 @@ libwavpack.a: $(STATIC_OBJS)
 	$(AR) -crv $@ $^
 	$(RANLIB) $@
 
+.PHONY: compile-cli-tools
+compile-cli-tools:
+	$(MAKE) -C cli WAVPACKDIR=$(WAVPACKDIR)
+
 .PHONY: clean
 clean:
+	$(MAKE) -C cli clean
 	rm -f $(TARGET) $(TARGET).debug *.o main/*.o
 	rm -f libwavpack.a static/*.o
 	rm -rf wavpack-build
