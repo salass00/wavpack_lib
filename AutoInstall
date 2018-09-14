@@ -1,0 +1,4 @@
+; AutoInstall script for AmiUpdate
+
+CopyStore wavpack_lib/Libs/wavpack.library LIBS:
+
