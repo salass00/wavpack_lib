@@ -9,6 +9,7 @@ set numvers `cut "$fullvers" word 2`
 
 delete all force ${destdir}
 makedir all force ${destdir}/wavpack_lib/Libs
+makedir all force ${destdir}/wavpack_lib/C
 makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/proto
 makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/interfaces
 makedir all force ${destdir}/wavpack_lib/SDK/local/newlib/include/inline4
@@ -20,6 +21,10 @@ copy clone LICENSE ${destdir}/wavpack_lib
 copy clone ${wavpackdir}/COPYING ${destdir}/wavpack_lib/COPYING-wavpack
 copy clone releasenotes ${destdir}/wavpack_lib
 copy clone wavpack.library ${destdir}/wavpack_lib/Libs
+copy clone cli/wavpack ${destdir}/wavpack_lib/C
+copy clone cli/wvgain ${destdir}/wavpack_lib/C
+copy clone cli/wvtag ${destdir}/wavpack_lib/C
+copy clone cli/wvunpack ${destdir}/wavpack_lib/C
 copy clone include/proto/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/proto
 copy clone include/interfaces/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/interfaces
 copy clone include/inline4/wavpack.h ${destdir}/wavpack_lib/SDK/local/newlib/include/inline4
