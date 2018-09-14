@@ -1,0 +1,10 @@
+(welcome)
+(set @default-dest "LIBS:")
+(copylib
+	(prompt "Copying wavpack.library")
+	(help @copylib-help)
+	(source "Libs/wavpack.library")
+	(dest @default-dest)
+	(confirm)
+)
+(exit)
