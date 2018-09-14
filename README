@@ -1,0 +1,19 @@
+This is an AmigaOS shared library implementation of libwavpack.
+
+WavPack is a completely open audio compression format providing lossless,
+high-quality lossy, and a unique hybrid compression mode.
+
+Installation:
+
+Copy Libs/wavpack.library LIBS:
+
+Source code:
+
+The source code for current and older versions is available on github:
+
+https://github.com/salass00/wavpack_lib
+
+Changes:
+
+For a list of changes in this and earlier versions see the releasenotes file.
+
